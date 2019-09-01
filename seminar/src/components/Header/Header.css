@@ -1,0 +1,10 @@
+.Header {
+  padding: 2%;
+  background-color: lightblue;
+  font-family: "Times New Roman", Times, serif;
+  display: flex;
+}
+
+.title {
+  margin: 0 5%;
+}
