@@ -3,7 +3,7 @@ const pool = new Pool({
   user: "me",
   host: "localhost",
   database: "nwt",
-  password: "password",
+  password: "Jj72630F",
   port: 5432
 });
 
@@ -98,5 +98,7 @@ module.exports = {
   getUsersById,
   createUser,
   updateUser,
-  deleteUser
+  deleteUser,
+  getPicture,
+  createPicture
 };

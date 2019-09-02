@@ -1,21 +1,24 @@
 import React, { Component } from "react";
 import "./App.css";
-import Header from "./components/Header/Header";
 import {
   BrowserRouter as Router,
   Route,
   Switch,
-  Link,
   Redirect
 } from "react-router-dom";
 
+import Header from "./components/Header/Header";
+import Footer from "./components/Footer/Footer";
+
 //Pages
 import MainPage from "./components/MainPage/MainPage";
-import NotFoundPage from "./components/404/404";
 import BlogPage from "./components/Blog/Blog";
+import AboutPage from "./components/About/About";
+import ContactPage from "./components/Contact/Contact";
 import Picture from "./components/Picture/Picture";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
+import NotFoundPage from "./components/404/404";
 
 class App extends Component {
   state = {
@@ -47,12 +50,15 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route path="/blog" component={BlogPage} />
+            <Route path="/about" component={AboutPage} />
+            <Route path="/contact" component={ContactPage} />
             <Route path="/picture" component={Picture} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>
+          <Footer />
         </Router>
       </div>
     );
