@@ -13,6 +13,7 @@ import Footer from "./components/Footer/Footer";
 //Pages
 import MainPage from "./components/MainPage/MainPage";
 import BlogPage from "./components/Blog/Blog";
+import ArticleBig from "./components/ArticleBig/ArticleBig";
 import AboutPage from "./components/About/About";
 import ContactPage from "./components/Contact/Contact";
 import Picture from "./components/Picture/Picture";
@@ -49,7 +50,8 @@ class App extends Component {
           <Header />
           <Switch>
             <Route exact path="/" component={MainPage} />
-            <Route path="/blog" component={BlogPage} />
+            <Route exact path="/blog" component={BlogPage} />
+            <Route exact path="/blog/:articleid" component={ArticleBig} />
             <Route path="/about" component={AboutPage} />
             <Route path="/contact" component={ContactPage} />
             <Route path="/picture" component={Picture} />

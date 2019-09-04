@@ -8,7 +8,7 @@ const pool = new Pool({
 });
 
 const getUsers = (request, response) => {
-  pool.query("SELECT * FROM users ORDER BY id ASC", (error, results) => {
+  pool.query("SELECT * FROM users ORDER BY userid ASC", (error, results) => {
     if (error) {
       throw error;
     }
@@ -17,22 +17,26 @@ const getUsers = (request, response) => {
 };
 
 const getUsersById = (request, response) => {
-  const id = parseInt(request.params.id);
+  const userid = parseInt(request.params.userid);
 
-  pool.query("SELECT * FROM users WHERE id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "SELECT * FROM users WHERE userid = $1",
+    [userid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const createUser = (request, response) => {
   const { name, email } = request.body;
 
   pool.query(
-    "INSERT INTO users (name, email) VALUES ($1, $2)",
-    [name, email],
+    "INSERT INTO users (first_name, second_name, email, username, password) VALUES ($1, $2, $3, $4, $5)",
+    [first_name, second_name, email, username, password],
     (error, results) => {
       if (error) {
         throw error;
@@ -43,39 +47,46 @@ const createUser = (request, response) => {
 };
 
 const updateUser = (request, response) => {
-  const id = parseInt(request.params.id);
+  const userid = parseInt(request.params.userid);
   const { name, email } = request.body;
 
   pool.query(
-    "UPDATE users SET name = $1, email = $2 WHERE id = $3",
-    [name, email, id],
+    "UPDATE users SET first_name = $1, second_name = $2, email = $3, username = $4, password = $5 WHERE userid = $6",
+    [first_name, second_name, email, username, password, userid],
     (error, results) => {
       if (error) {
         throw error;
       }
-      response.status(200).send(`User modified with ID: ${id}`);
+      response.status(200).send(`User modified with ID: ${userid}`);
     }
   );
 };
 
 const deleteUser = (request, response) => {
-  const id = parseInt(request.params.id);
+  const userid = parseInt(request.params.userid);
 
-  pool.query("DELETE FROM users WHERE id = $1", [id], (error, results) => {
-    if (error) {
-      throw error;
+  pool.query(
+    "DELETE FROM users WHERE userid = $1",
+    [userid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).send(`User deleted with ID: ${userid}`);
     }
-    response.status(200).send(`User deleted with ID: ${id}`);
-  });
+  );
 };
 
-const getPicture = (request, response) => {
-  pool.query("SELECT * FROM pictures ORDER BY id ASC", (error, results) => {
-    if (error) {
-      throw error;
+const getPictures = (request, response) => {
+  pool.query(
+    "SELECT * FROM pictures ORDER BY pictureid ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
-    response.status(200).json(results.rows);
-  });
+  );
 };
 
 const createPicture = (request, response) => {
@@ -93,12 +104,41 @@ const createPicture = (request, response) => {
   );
 };
 
+const getArticles = (request, response) => {
+  pool.query(
+    "SELECT * FROM articles ORDER BY articleid ASC",
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
+const getArticleById = (request, response) => {
+  const articleid = parseInt(request.params.articleid);
+
+  pool.query(
+    "SELECT * FROM articles WHERE articleid = $1",
+    [articleid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 module.exports = {
   getUsers,
   getUsersById,
   createUser,
   updateUser,
   deleteUser,
-  getPicture,
-  createPicture
+  getPictures,
+  createPicture,
+  getArticles,
+  getArticleById
 };

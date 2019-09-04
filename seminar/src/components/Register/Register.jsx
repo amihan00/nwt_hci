@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Axios from "axios";
+import axios from "axios";
 
 class Register extends Component {
   constructor(props) {
@@ -8,7 +8,7 @@ class Register extends Component {
   }
 
   componentDidMount() {
-    Axios.get("/users").then(response => console.log(response.data));
+    axios.get("/users").then(response => console.log(response.data));
   }
 
   render() {
