@@ -1,9 +1,31 @@
 import React, { Component } from "react";
+import axios from "axios";
+
+import Article from "./../Article/Article";
 
 class Blog extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {
+      articles: []
+    };
+  }
+
+  componentDidMount() {
+    axios.get("/articles").then(response => {
+      this.setState({ articles: response.data });
+    });
+  }
+
   render() {
-    return <h2>Blog</h2>;
+    const { articles } = this.state;
+    return (
+      <div>
+        {articles.map((article, i) => (
+          <Article key={i} articleprop={article} />
+        ))}
+      </div>
+    );
   }
 }
 
