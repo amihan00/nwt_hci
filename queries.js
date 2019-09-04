@@ -35,7 +35,11 @@ const createUser = (request, response) => {
   const { first_name, second_name, email, username, password } = request.body;
 
   pool.query(
+<<<<<<< HEAD
     "INSERT INTO users (userid, first_name, second_name, email, username, password) VALUES (DEFAULT, $1, $2, $3, $4, $5)",
+=======
+    "INSERT INTO users (first_name, second_name, email, username, password) VALUES ($1, $2, $3, $4, $5)",
+>>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
     [first_name, second_name, email, username, password],
     (error, results) => {
       if (error) {
@@ -48,7 +52,11 @@ const createUser = (request, response) => {
 
 const updateUser = (request, response) => {
   const userid = parseInt(request.params.userid);
+<<<<<<< HEAD
   const { first_name, second_name, email, username, password } = request.body;
+=======
+  const { name, email } = request.body;
+>>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 
   pool.query(
     "UPDATE users SET first_name = $1, second_name = $2, email = $3, username = $4, password = $5 WHERE userid = $6",
@@ -131,6 +139,7 @@ const getArticleById = (request, response) => {
   );
 };
 
+<<<<<<< HEAD
 const logIn = (request, response) => {
   const { username, password } = request.body;
 
@@ -147,6 +156,8 @@ const logIn = (request, response) => {
   );
 };
 
+=======
+>>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 module.exports = {
   getUsers,
   getUsersById,
@@ -156,6 +167,10 @@ module.exports = {
   getPictures,
   createPicture,
   getArticles,
+<<<<<<< HEAD
   getArticleById,
   logIn
+=======
+  getArticleById
+>>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 };
