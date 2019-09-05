@@ -17,21 +17,14 @@ app.get("/", (request, response) => {
 
 app.get("/users", db.getUsers);
 app.get("/users/getbyid/:userid", db.getUsersById);
-<<<<<<< HEAD
 app.post("/createuser", db.createUser);
-=======
-app.post("/users/create", db.createUser);
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 app.put("/users/update/:userid", db.updateUser);
 app.delete("/users/delete/:userid", db.deleteUser);
 app.get("/pictures", db.getPictures);
-app.post("/pictures/create", db.createPicture);
+app.post("/createpicture", db.createPicture);
 app.get("/articles", db.getArticles);
 app.get("/articles/:articleid", db.getArticleById);
-<<<<<<< HEAD
 app.get("/login", db.logIn);
-=======
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`);

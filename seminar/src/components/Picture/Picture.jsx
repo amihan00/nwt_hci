@@ -1,9 +1,14 @@
 import React, { Component } from "react";
 
 class Picture extends Component {
-  state = {};
+  constructor(props) {
+    super(props);
+    this.state = {};
+  }
   render() {
-    return <h2>Picture</h2>;
+    const { pictureLink } = this.props;
+    console.log(this.props);
+    return <div>{pictureLink}</div>;
   }
 }
 

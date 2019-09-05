@@ -13,11 +13,7 @@ import Footer from "./components/Footer/Footer";
 //Pages
 import MainPage from "./components/MainPage/MainPage";
 import BlogPage from "./components/Blog/Blog";
-<<<<<<< HEAD
 import ArticlePage from "./components/ArticlePage/ArticlePage";
-=======
-import ArticleBig from "./components/ArticleBig/ArticleBig";
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 import AboutPage from "./components/About/About";
 import ContactPage from "./components/Contact/Contact";
 import Picture from "./components/Picture/Picture";
@@ -55,11 +51,7 @@ class App extends Component {
           <Switch>
             <Route exact path="/" component={MainPage} />
             <Route exact path="/blog" component={BlogPage} />
-<<<<<<< HEAD
             <Route exact path="/blog/:articleid" component={ArticlePage} />
-=======
-            <Route exact path="/blog/:articleid" component={ArticleBig} />
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
             <Route path="/about" component={AboutPage} />
             <Route path="/contact" component={ContactPage} />
             <Route path="/picture" component={Picture} />

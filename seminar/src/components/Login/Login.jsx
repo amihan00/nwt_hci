@@ -41,6 +41,8 @@ class Login extends Component {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
 
+    console.log(this.state.username, this.state.password);
+
     axios
       .get("/login", {
         username: this.state.username,

@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-<<<<<<< HEAD
 
 const emailRegex = RegExp(
   "/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+(?:.[a-zA-Z0-9-]+)*$/"
@@ -19,8 +18,6 @@ const formValid = ({ formErrors, ...rest }) => {
 
   return valid;
 };
-=======
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 
 class Register extends Component {
   constructor(props) {
@@ -41,7 +38,6 @@ class Register extends Component {
     };
   }
 
-<<<<<<< HEAD
   handleSubmit = e => {
     e.preventDefault();
 
@@ -106,11 +102,9 @@ class Register extends Component {
 
     this.setState({ formErrors, [name]: value });
   };
-=======
   componentDidMount() {
     axios.get("/users").then(response => console.log(response.data));
   }
->>>>>>> a31c52ae012eac171202141ed7ffb9190056315a
 
   render() {
     const { formErrors } = this.state;
