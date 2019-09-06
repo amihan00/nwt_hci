@@ -102,9 +102,6 @@ class Register extends Component {
 
     this.setState({ formErrors, [name]: value });
   };
-  componentDidMount() {
-    axios.get("/users").then(response => console.log(response.data));
-  }
 
   render() {
     const { formErrors } = this.state;

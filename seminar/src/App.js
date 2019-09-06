@@ -16,7 +16,7 @@ import BlogPage from "./components/Blog/Blog";
 import ArticlePage from "./components/ArticlePage/ArticlePage";
 import AboutPage from "./components/About/About";
 import ContactPage from "./components/Contact/Contact";
-import Picture from "./components/Picture/Picture";
+import PicturePage from "./components/PicturePage/PicturePage";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import NotFoundPage from "./components/404/404";
@@ -54,7 +54,7 @@ class App extends Component {
             <Route exact path="/blog/:articleid" component={ArticlePage} />
             <Route path="/about" component={AboutPage} />
             <Route path="/contact" component={ContactPage} />
-            <Route path="/picture" component={Picture} />
+            <Route path="/picture/:pictureid" component={PicturePage} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/404" component={NotFoundPage} />

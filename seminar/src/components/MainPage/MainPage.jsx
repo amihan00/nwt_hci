@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Picture from "./../Picture/Picture";
+import PicturePage from "./../PicturePage/PicturePage";
 
 class MainPage extends Component {
   constructor(props) {
@@ -28,11 +29,11 @@ class MainPage extends Component {
   render() {
     const { pictures } = this.state;
     return (
-      <React.Fragment>
-        {Array.prototype.forEach.call(pictures, picture => (
-          <Picture picture={picture} />
+      <div className="pictureContainer">
+        {Array.prototype.map.call(pictures, (picture, idx) => (
+          <Picture className="pictureItem" key={idx} picture={picture} />
         ))}
-      </React.Fragment>
+      </div>
     );
   }
 }
