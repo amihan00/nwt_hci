@@ -16,7 +16,7 @@ const getUsers = (request, response) => {
   });
 };
 
-const getUsersById = (request, response) => {
+const getUserById = (request, response) => {
   const userid = parseInt(request.params.userid);
 
   pool.query(
@@ -79,7 +79,7 @@ const deleteUser = (request, response) => {
 
 const getPictures = (request, response) => {
   pool.query(
-    "SELECT * FROM pictures ORDER BY pictureid ASC",
+    "SELECT * FROM pictures ORDER BY pictureid DESC",
     (error, results) => {
       if (error) {
         throw error;
@@ -100,6 +100,21 @@ const createPicture = (request, response) => {
         throw error;
       }
       response.status(201).send(`Picture added with ID: ${results.insertId}`);
+    }
+  );
+};
+
+const getPictureComments = (request, response) => {
+  const pictureid = parseInt(request.params.pictureid);
+
+  pool.query(
+    "SELECT * FROM comments WHERE pictureid = $1",
+    [pictureid],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
     }
   );
 };
@@ -151,12 +166,13 @@ const logIn = (request, response) => {
 
 module.exports = {
   getUsers,
-  getUsersById,
+  getUserById,
   createUser,
   updateUser,
   deleteUser,
   getPictures,
   createPicture,
+  getPictureComments,
   getArticles,
   getArticleById,
   logIn

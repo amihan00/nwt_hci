@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import axios from "axios";
 
 import Picture from "./../Picture/Picture";
-import PicturePage from "./../PicturePage/PicturePage";
 
 class MainPage extends Component {
   constructor(props) {

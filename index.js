@@ -16,12 +16,13 @@ app.get("/", (request, response) => {
 });
 
 app.get("/users", db.getUsers);
-app.get("/getuserbyid/:userid", db.getUsersById);
+app.get("/getuserbyid/:userid", db.getUserById);
 app.post("/createuser", db.createUser);
 app.put("/updateuser/:userid", db.updateUser);
 app.delete("/deleteuser/:userid", db.deleteUser);
 app.get("/pictures", db.getPictures);
 app.post("/createpicture", db.createPicture);
+app.get("/getpicturecomments/:pictureid", db.getPictureComments);
 app.get("/articles", db.getArticles);
 app.get("/getarticlebyid/:articleid", db.getArticleById);
 app.get("/login", db.logIn);

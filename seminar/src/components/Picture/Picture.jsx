@@ -2,15 +2,15 @@ import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 
-import PicturePage from "./../PicturePage/PicturePage";
-
 class Picture extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      pictureid: null,
-      pictureLink: null,
-      userid: null
+      picture: {
+        pictureid: null,
+        pictureLink: null,
+        userid: null
+      }
     };
   }
 
@@ -26,9 +26,11 @@ class Picture extends Component {
           )
         );
         this.setState({
-          pictureid: pictureid,
-          pictureLink: "data:;base64," + base64,
-          userid: userid
+          picture: {
+            pictureid: pictureid,
+            pictureLink: "data:;base64," + base64,
+            userid: userid
+          }
         });
       })
       .catch(error => console.log(error));
@@ -36,14 +38,20 @@ class Picture extends Component {
 
   render() {
     return (
+      /* <Link
+        to={pathname: `/picture/${this.state.picture.pictureid}`,
+        state: {picture: this.state.picture}}
+      > */
       <Link
-        to={`/picture/${this.state.pictureid}`}
-        pictureid={this.state.pictureid}
+        to={{
+          pathname: `/picture/${this.state.picture.pictureid}`,
+          state: { picture: this.state.picture }
+        }}
       >
         <span className="pictureElement">
           <img
-            src={this.state.pictureLink}
-            alt={`img ${this.props.picture.pictureid}`}
+            src={this.state.picture.pictureLink}
+            alt={`img ${this.state.picture.pictureid}`}
           />
         </span>
       </Link>
