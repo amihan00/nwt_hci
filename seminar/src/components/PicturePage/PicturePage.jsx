@@ -52,7 +52,6 @@ class PicturePage extends Component {
           />
           <h4 className="userInfo">{`Picture by: ${this.state.username} ${this.state.email}`}</h4>
         </div>
-        {console.log(this.state.pictureid)}
         <CommentsContainer pictureid={this.state.pictureid} />
       </div>
     );

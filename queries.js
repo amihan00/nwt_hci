@@ -1,4 +1,5 @@
 const Pool = require("pg").Pool;
+const jwt = require("jsonwebtoken");
 const pool = new Pool({
   user: "me",
   host: "localhost",
@@ -6,6 +7,7 @@ const pool = new Pool({
   password: "Jj72630F",
   port: 5432
 });
+const secret = "mysecret";
 
 const getUsers = (request, response) => {
   pool.query("SELECT * FROM users ORDER BY userid ASC", (error, results) => {
@@ -89,6 +91,19 @@ const getPictures = (request, response) => {
   );
 };
 
+const getPictureByTag = (request, response) => {
+  pool.query(
+    "SELECT * FROM pictures WHERE primary_tag = $1 OR secondary_tag = $2",
+    [search_tag],
+    (error, results) => {
+      if (error) {
+        throw error;
+      }
+      response.status(200).json(results.rows);
+    }
+  );
+};
+
 const createPicture = (request, response) => {
   const { link } = request.body;
 
@@ -149,17 +164,14 @@ const getArticleById = (request, response) => {
 const logIn = (request, response) => {
   const { username, password } = request.body;
 
-  console.log(request.body);
-
   pool.query(
-    /* "SELECT EXISTS (SELECT 1 FROM users WHERE username = $1 AND password = $2)", */
+    "SELECT * FROM users WHERE username = $1 AND password = $2",
     [username, password],
     (error, results) => {
       if (error) {
         throw error;
       }
       response.status(200).json(results.rows);
-      console.log(response);
     }
   );
 };
@@ -171,6 +183,7 @@ module.exports = {
   updateUser,
   deleteUser,
   getPictures,
+  getPictureByTag,
   createPicture,
   getPictureComments,
   getArticles,

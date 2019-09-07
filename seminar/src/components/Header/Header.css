@@ -1,10 +1,40 @@
-.Header {
-  padding: 1%;
+.header {
   background-color: lightblue;
   font-family: "Times New Roman", Times, serif;
   display: flex;
+  justify-content: space-around;
+  align-items: center;
 }
 
-.title {
-  margin: 0 5%;
+.headerElement {
+  text-decoration: none;
+  color: black;
+}
+
+.pageTitle {
+  margin: 0;
+  font-family: "Brush Script MT", "Brush Script Std", cursive;
+}
+
+.logRegWrapper {
+  list-style-type: none;
+}
+
+.logRegWrapper li {
+  text-align: center;
+}
+
+.logReg {
+  color: black;
+  text-decoration: none;
+}
+
+.logReg h4 {
+  margin: 5px;
+  padding: 5px;
+  background-color: rgb(205, 143, 211);
+}
+
+.searchbar {
+  padding: 0;
 }

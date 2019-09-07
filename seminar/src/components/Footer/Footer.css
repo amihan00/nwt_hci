@@ -1,4 +1,4 @@
-footer {
+.footer {
   position: fixed;
   left: 0;
   bottom: 0;
@@ -6,4 +6,8 @@ footer {
   background-color: lightblue;
   color: white;
   text-align: center;
+}
+
+.footer h2 {
+  margin: 0;
 }

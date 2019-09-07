@@ -1,32 +1,37 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import axios from "axios";
 
 class Article extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      article: null
+    };
   }
 
-  /* componentDidMount() {
+  UNSAFE_componentWillReceiveProps() {
     const { articleid } = this.props;
-    axios.get(`/articles/${articleid}`).then(response => {
+    axios.get(`/getarticlebyid/${articleid}`).then(response => {
       this.setState({ article: response.data });
+      console.log(this.state);
     });
-  } */
+  }
 
   render() {
     return (
-      <div>
-        <h2>artikl</h2>
+      <div className="articlesWrapper">
+        <h2 className="articleTitle">{this.props.article.article_title}</h2>
+        <p className="articleTextSmall">{this.props.article.article_text}</p>
         <Link
           to={{
-            pathname: `/blog/${this.props.articleprop.articleid}`,
+            pathname: `/blog/${this.props.article.articleid}`,
             state: {
-              articleid: this.props.articleprop.articleid
+              article: this.props.article
             }
           }}
         >
-          Link
+          Read more...
         </Link>
       </div>
     );

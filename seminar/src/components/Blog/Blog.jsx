@@ -18,11 +18,12 @@ class Blog extends Component {
   }
 
   render() {
+    console.log(this.state);
     const { articles } = this.state;
     return (
       <div>
-        {articles.map((article, i) => (
-          <Article key={i} articleprop={article} />
+        {articles.map((article, idx) => (
+          <Article key={idx} article={article} />
         ))}
       </div>
     );

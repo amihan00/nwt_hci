@@ -44,7 +44,7 @@ class Login extends Component {
     console.log(this.state.username, this.state.password);
 
     axios
-      .get("/login", {
+      .post("/login", {
         username: this.state.username,
         password: this.state.password
       })

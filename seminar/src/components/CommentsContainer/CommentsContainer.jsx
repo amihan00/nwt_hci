@@ -1,21 +1,39 @@
 import React, { Component } from "react";
 import axios from "axios";
 
+import Comment from "./../Comment/Comment";
+
 class ComentsContainer extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      pictureid: null,
+      comments: []
+    };
   }
-  componentDidMount() {
-    console.log(this);
-    console.log(this.props);
-    /* axios.get(`/getpicturecomments/${pictureid}`).then(response => {
-      console.log(response);
-    }); */
+
+  UNSAFE_componentWillReceiveProps() {
+    const { pictureid } = this.props;
+    if (pictureid) {
+      axios
+        .get(`/getpicturecomments/${pictureid}`)
+        .then(response => {
+          this.setState({
+            comments: response.data
+          });
+        })
+        .catch(error => console.log(error));
+    }
   }
 
   render() {
-    return <div>Comments Container</div>;
+    return (
+      <div className="commentsContainer">
+        {this.state.comments.map((comment, idx) => {
+          return <Comment key={idx} comment={comment} />;
+        })}
+      </div>
+    );
   }
 }
 

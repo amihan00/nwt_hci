@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import "./Picture.css";
 
 class Picture extends Component {
   constructor(props) {
@@ -42,19 +43,22 @@ class Picture extends Component {
         to={pathname: `/picture/${this.state.picture.pictureid}`,
         state: {picture: this.state.picture}}
       > */
-      <Link
-        to={{
-          pathname: `/picture/${this.state.picture.pictureid}`,
-          state: { picture: this.state.picture }
-        }}
-      >
-        <span className="pictureElement">
-          <img
-            src={this.state.picture.pictureLink}
-            alt={`img ${this.state.picture.pictureid}`}
-          />
-        </span>
-      </Link>
+      <div className="pictureWrapper">
+        <Link
+          to={{
+            pathname: `/picture/${this.state.picture.pictureid}`,
+            state: { picture: this.state.picture }
+          }}
+        >
+          <span className="pictureElement">
+            <img
+              className="picture"
+              src={this.state.picture.pictureLink}
+              alt={`img ${this.state.picture.pictureid}`}
+            />
+          </span>
+        </Link>
+      </div>
     );
   }
 }
