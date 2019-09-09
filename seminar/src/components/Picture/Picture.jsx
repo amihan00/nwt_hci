@@ -49,7 +49,7 @@ class Picture extends Component {
         >
           <span className="pictureElement">
             <img
-              className="picture"
+              className="image"
               src={this.props.picture.picture_link}
               alt={`img ${this.props.picture.pictureid}`}
             />

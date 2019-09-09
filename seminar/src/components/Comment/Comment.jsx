@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Comment.css";
 
 class Comment extends Component {
   constructor(props) {
@@ -27,9 +28,15 @@ class Comment extends Component {
     return (
       <div className="commentWrapper">
         <hr className="commentDivisor" />
-        <p className="commentText">{comment.comment_text}</p>
-        <p className="commentTime">{comment.comment_time}</p>
-        <p className="commenter">{this.state.user.username}</p>
+        <div className="commmentBox">
+          <div className="commentInfo commentElement">
+            <p className="c commenter">
+              <b>{this.state.user.username}</b> says:
+            </p>
+            <p className="c commentTime">{comment.comment_time}</p>
+            <p className="commentElement commentText">{comment.comment_text}</p>
+          </div>
+        </div>
       </div>
     );
   }

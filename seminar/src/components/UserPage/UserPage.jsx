@@ -19,7 +19,7 @@ class UserPage extends Component {
       .then(response => {
         console.log(response);
         logout();
-        loginState.loginCallback();
+        loginState.loginCallback(true);
         this.props.history.push("/");
       })
       .catch(error => console.log(error));
@@ -32,22 +32,22 @@ class UserPage extends Component {
       <div className="userInfo">
         <h3>{`Hello, ${user.username}!`}</h3>
         <div className="firstName">
-          <h4 className="text">First name: </h4>
-          <h5 className="text">{user.first_name}</h5>
+          <h4 className="userLabel">First name: </h4>
+          <h5 className="userText">{user.first_name}</h5>
         </div>
         <div className="secondName">
-          <h4 className="text">Second name: </h4>
-          <h5 className="text">{user.second_name}</h5>
+          <h4 className="userLabel">Second name: </h4>
+          <h5 className="userText">{user.second_name}</h5>
         </div>
         <div className="email">
-          <h4 className="text">Email: </h4>
-          <h5 className="text">{user.email}</h5>
+          <h4 className="userLabel">Email: </h4>
+          <h5 className="userText">{user.email}</h5>
         </div>
         <div className="firstName">
-          <h4 className="text">Username: </h4>
-          <h5 className="text">{user.username}</h5>
+          <h4 className="userLabel">Username: </h4>
+          <h5 className="userText">{user.username}</h5>
         </div>
-        <button className="updateUser" onClick={this.updateUser}>
+        <button className="createAccount updateUser" onClick={this.updateUser}>
           <Link
             className="updateUserLink"
             to={{
@@ -60,7 +60,7 @@ class UserPage extends Component {
             Update User
           </Link>
         </button>
-        <button className="deleteUser" onClick={this.deleteUser}>
+        <button className="createAccount" onClick={this.deleteUser}>
           Delete User
         </button>
       </div>

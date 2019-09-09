@@ -3,8 +3,9 @@ import axios from "axios";
 import "./MainPage.scss";
 import { Link } from "react-router-dom";
 
-import Picture from "./../Picture/Picture";
 import { loginState } from "./../../login";
+
+import Picture from "./../Picture/Picture";
 
 class MainPage extends Component {
   constructor(props) {
@@ -61,14 +62,13 @@ class MainPage extends Component {
   displayAddPicture = () => {
     if (loginState.isLoggedIn) {
       return (
-        <div className="addPictureBar">
-          <button
-            className="addPicture"
-            onClick={<Link to="/addnewpicture"></Link>}
-          >
-            {loginState.user.username}, click here to add a new picture!
+        <Link to="/addnewpicture">
+          <button className="addPicture" type="button">
+            <h5>
+              {loginState.user.username}, click here to add a new picture!
+            </h5>
           </button>
-        </div>
+        </Link>
       );
     }
   };
@@ -77,6 +77,7 @@ class MainPage extends Component {
     const { pictureTag, pictures, picturesSorted } = this.state;
     return (
       <div className="mainWrapper">
+        {this.displayAddPicture()}
         <div className="searchbar">
           <input
             id="search"
@@ -86,7 +87,6 @@ class MainPage extends Component {
             onKeyPress={this.handleInputClick}
           />
         </div>
-        {this.displayAddPicture()}
         <div id="wrapper" className="pictureContainer">
           {Array.prototype.map.call(
             pictureTag ? picturesSorted : pictures,

@@ -1,10 +1,13 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./Login.css";
 
 import login, { loginState } from "./../../login";
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
+
+  if (rest.username === "" || rest.password === "") valid = false;
 
   Object.values(formErrors).forEach(val => {
     val.length > 0 && (valid = false);
@@ -32,32 +35,31 @@ class Login extends Component {
 
   handleSubmit = e => {
     e.preventDefault();
-
-    if (formValid(this.state)) {
+    if (!formValid(this.state)) {
+      window.alert("Error logging in");
+    } else {
       console.log(`
       --SUBMITTING FOR LOGIN--
       Username: ${this.state.username}
       Password: ${this.state.password}
       `);
-    } else {
-      console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
+
+      axios
+        .post("/login", {
+          username: this.state.username,
+          password: this.state.password
+        })
+        .then(response => {
+          if (response.data.length !== 0) {
+            login(response.data[0], true);
+            loginState.loginCallback(true);
+            this.props.history.push("/");
+          } else {
+            window.alert("Wrong username or password, please try again!");
+          }
+        })
+        .catch(error => console.log(error));
     }
-
-    console.log(this.state.username, this.state.password);
-
-    axios
-      .post("/login", {
-        username: this.state.username,
-        password: this.state.password
-      })
-      .then(response => {
-        if (response.data.length !== 0) {
-          login(response.data[0], true);
-          loginState.loginCallback();
-          this.props.history.push("/");
-        }
-      })
-      .catch(error => console.log(error));
   };
 
   handleChange = e => {
@@ -69,7 +71,9 @@ class Login extends Component {
     switch (name) {
       case "username":
         formErrors.username =
-          value.length < 3 ? "minimum 3 characters required" : "";
+          value.length < 3 || name === null
+            ? "minimum 3 characters required"
+            : "";
         break;
       case "password":
         formErrors.password =
@@ -90,35 +94,49 @@ class Login extends Component {
           <h1>Log In</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="username">
-              <label htmlFor="username">username</label>
-              <input
-                type="text"
-                className={formErrors.username.length > 0 ? "error" : null}
-                placeholder="username"
-                name="username"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.username.length > 0 && (
-                <span className="errorMessage">{formErrors.username}</span>
-              )}
+              <label className="label" htmlFor="username">
+                Username:
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  className={`input ${
+                    formErrors.username.length > 0 ? "error" : null
+                  }`}
+                  placeholder="username"
+                  name="username"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.username.length > 0 && (
+                  <span className="errorMessage">{formErrors.username}</span>
+                )}
+              </div>
             </div>
             <div className="password">
-              <label htmlFor="password">password</label>
-              <input
-                type="password"
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="password"
-                name="password"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.username.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
+              <label className="label" htmlFor="password">
+                Password:
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="password"
+                  className={`input ${
+                    formErrors.password.length > 0 ? "error" : null
+                  }`}
+                  placeholder="password"
+                  name="password"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.username.length > 0 && (
+                  <span className="errorMessage">{formErrors.password}</span>
+                )}
+              </div>
             </div>
             <div className="logIn">
-              <button type="submit">Log In</button>
+              <button className="createAccount" type="submit">
+                Log In
+              </button>
             </div>
           </form>
         </div>

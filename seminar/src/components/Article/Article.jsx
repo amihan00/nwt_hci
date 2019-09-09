@@ -1,6 +1,11 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import "./Article.css";
+
+import image from "./../../images/york.png";
+
+const MAX_LENGTH = 300;
 
 class Article extends Component {
   constructor(props) {
@@ -20,19 +25,29 @@ class Article extends Component {
 
   render() {
     return (
-      <div className="articlesWrapper">
+      <div className="articleWrapper">
+        <hr />
         <h2 className="articleTitle">{this.props.article.article_title}</h2>
-        <p className="articleTextSmall">{this.props.article.article_text}</p>
-        <Link
-          to={{
-            pathname: `/blog/${this.props.article.articleid}`,
-            state: {
-              article: this.props.article
-            }
-          }}
-        >
-          Read more...
-        </Link>
+        <div className="articleBox">
+          <img className="articleImage" src={image} alt="articleImage" />
+          <p className="articleTextSmall">
+            {`${this.props.article.article_text.substring(
+              0,
+              MAX_LENGTH
+            )}...   `}
+            <Link
+              className="articleLink"
+              to={{
+                pathname: `/blog/${this.props.article.articleid}`,
+                state: {
+                  article: this.props.article
+                }
+              }}
+            >
+              Read more...
+            </Link>
+          </p>
+        </div>
       </div>
     );
   }

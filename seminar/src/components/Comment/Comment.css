@@ -1,0 +1,21 @@
+.commentWrapper {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.c {
+  display: inline-block;
+}
+
+.commenter {
+  padding-left: 3%;
+}
+
+.commentTime {
+  float: right;
+  padding-right: 3%;
+}
+
+.commentText {
+  margin-top: 0;
+  padding-left: 5%;
+}

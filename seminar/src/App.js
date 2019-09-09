@@ -66,7 +66,6 @@ class App extends Component {
             <Route path="/404" component={NotFoundPage} />
             <Redirect to="/404" />
           </Switch>
-          <Footer />
         </Router>
       </div>
     );

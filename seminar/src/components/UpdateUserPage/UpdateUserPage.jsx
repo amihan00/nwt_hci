@@ -110,77 +110,99 @@ class UpdateUserPage extends Component {
           <h1>Update User</h1>
           <form onSubmit={this.handleSubmit} noValidate>
             <div className="firstName">
-              <label htmlFor="firstName">New First Name</label>
-              <input
-                type="text"
-                className={formErrors.firstName.length > 0 ? "error" : null}
-                placeholder="First Name"
-                name="firstName"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.firstName.length > 0 && (
-                <span className="errorMessage">{formErrors.firstName}</span>
-              )}
+              <label className="label" htmlFor="firstName">
+                New First Name
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  className={formErrors.firstName.length > 0 ? "error" : null}
+                  placeholder="First Name"
+                  name="firstName"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.firstName.length > 0 && (
+                  <span className="errorMessage">{formErrors.firstName}</span>
+                )}
+              </div>
             </div>
             <div className="secondName">
-              <label htmlFor="secondName">New Second Name</label>
-              <input
-                type="text"
-                className={formErrors.secondName.length > 0 ? "error" : null}
-                placeholder="Second Name"
-                name="secondName"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.secondName.length > 0 && (
-                <span className="errorMessage">{formErrors.secondName}</span>
-              )}
+              <label className="label" htmlFor="secondName">
+                New Second Name
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  className={formErrors.secondName.length > 0 ? "error" : null}
+                  placeholder="Second Name"
+                  name="secondName"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.secondName.length > 0 && (
+                  <span className="errorMessage">{formErrors.secondName}</span>
+                )}
+              </div>
             </div>
             <div className="email">
-              <label htmlFor="email">New Email</label>
-              <input
-                type="email"
-                className={formErrors.email.length > 0 ? "error" : null}
-                placeholder="Email"
-                name="email"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.email.length > 0 && (
-                <span className="errorMessage">{formErrors.email}</span>
-              )}
+              <label className="label" htmlFor="email">
+                New Email
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="email"
+                  className={formErrors.email.length > 0 ? "error" : null}
+                  placeholder="Email"
+                  name="email"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.email.length > 0 && (
+                  <span className="errorMessage">{formErrors.email}</span>
+                )}
+              </div>
             </div>
             <div className="username">
-              <label htmlFor="username">New Username</label>
-              <input
-                type="text"
-                className={formErrors.username.length > 0 ? "error" : null}
-                placeholder="username"
-                name="username"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.username.length > 0 && (
-                <span className="errorMessage">{formErrors.username}</span>
-              )}
+              <label className="label" htmlFor="username">
+                New Username
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  className={formErrors.username.length > 0 ? "error" : null}
+                  placeholder="username"
+                  name="username"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.username.length > 0 && (
+                  <span className="errorMessage">{formErrors.username}</span>
+                )}
+              </div>
             </div>
             <div className="password">
-              <label htmlFor="password">New password</label>
-              <input
-                type="password"
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="password"
-                name="password"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.password.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
+              <label className="label" htmlFor="password">
+                New password
+              </label>
+              <div className="inputContainer">
+                <input
+                  type="password"
+                  className={formErrors.password.length > 0 ? "error" : null}
+                  placeholder="password"
+                  name="password"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.password.length > 0 && (
+                  <span className="errorMessage">{formErrors.password}</span>
+                )}
+              </div>
             </div>
-            <div className="createAccount">
-              <button type="submit">Update</button>
+            <div className="logIn">
+              <button className="createAccount" type="submit">
+                Update
+              </button>
             </div>
           </form>
         </div>

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 
-import login, { loginState } from "./../../login";
+import { loginState } from "./../../login";
 
 const formValid = ({ formErrors, ...rest }) => {
   let valid = true;
@@ -37,27 +37,25 @@ class AddPicturePage extends Component {
 
     if (formValid(this.state)) {
       console.log(`
-      --SUBMITTING FOR LOGIN--
-      Username: ${this.state.username}
-      Password: ${this.state.password}
+      --SUBMITTING PICTURE FOR UPLOAD--
+      Link:          ${this.state.pictureLink}
+      Primary Tag:   ${this.state.primaryTag}
+      Secondary Tag: ${this.state.secondaryTag}
       `);
     } else {
       console.error("FORM INVALID - DISPLAY ERROR MESSAGE");
     }
 
-    console.log(this.state.username, this.state.password);
-
     axios
-      .post("/login", {
-        username: this.state.username,
-        password: this.state.password
+      .post(`/createpicture/${loginState.user.userid}`, {
+        picture_link: this.state.pictureLink,
+        primary_tag: this.state.primaryTag,
+        secondary_tag: this.state.secondaryTag
       })
       .then(response => {
-        if (response.data.length !== 0) {
-          login(response.data[0], true);
-          loginState.loginCallback();
-          this.props.history.push("/");
-        }
+        window.alert("New picture added");
+        loginState.loginCallback(true);
+        this.props.history.push("/");
       })
       .catch(error => console.log(error));
   };
@@ -69,13 +67,17 @@ class AddPicturePage extends Component {
     let formErrors = this.state.formErrors;
 
     switch (name) {
-      case "username":
-        formErrors.username =
+      case "pictureLink":
+        formErrors.pictureLink =
           value.length < 3 ? "minimum 3 characters required" : "";
         break;
-      case "password":
-        formErrors.password =
-          value.length < 4 ? "minimum 4 characters required" : "";
+      case "primaryTag":
+        formErrors.primaryTag =
+          value.length < 3 ? "minimum 3 characters required" : "";
+        break;
+      case "secondaryTag":
+        formErrors.secondaryTag =
+          value.length < 3 ? "minimum 3 characters required" : "";
         break;
       default:
         break;
@@ -89,38 +91,73 @@ class AddPicturePage extends Component {
     return (
       <div className="wrapper">
         <div className="form-wrapper">
-          <h1>Log In</h1>
+          <h1>Add new picture</h1>
           <form onSubmit={this.handleSubmit} noValidate>
-            <div className="username">
-              <label htmlFor="username">username</label>
-              <input
-                type="text"
-                className={formErrors.username.length > 0 ? "error" : null}
-                placeholder="username"
-                name="username"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.username.length > 0 && (
-                <span className="errorMessage">{formErrors.username}</span>
-              )}
+            <div className="pictureLink">
+              <label className="label" htmlFor="pictureLink">
+                Picture link:
+              </label>
+
+              <div className="inputContainer">
+                <input
+                  type="text"
+                  className={formErrors.pictureLink.length > 0 ? "error" : null}
+                  placeholder="picture link"
+                  name="pictureLink"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.pictureLink.length > 0 && (
+                  <span className="errorMessage">{formErrors.pictureLink}</span>
+                )}
+              </div>
             </div>
-            <div className="password">
-              <label htmlFor="password">password</label>
-              <input
-                type="password"
-                className={formErrors.password.length > 0 ? "error" : null}
-                placeholder="password"
-                name="password"
-                noValidate
-                onChange={this.handleChange}
-              />
-              {formErrors.username.length > 0 && (
-                <span className="errorMessage">{formErrors.password}</span>
-              )}
+            <div className="primaryTag">
+              <label className="label" htmlFor="primaryTag">
+                Primary tag:
+              </label>
+
+              <div className="inputContainer">
+                <input
+                  type="primaryTag"
+                  className={formErrors.primaryTag.length > 0 ? "error" : null}
+                  placeholder="primary tag"
+                  name="primaryTag"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.primaryTag.length > 0 && (
+                  <span className="errorMessage">{formErrors.primaryTag}</span>
+                )}
+              </div>
             </div>
-            <div className="logIn">
-              <button type="submit">Log In</button>
+            <div className="secondaryTag">
+              <label className="label" htmlFor="secondaryTag">
+                Secondary tag (optional):
+              </label>
+
+              <div className="inputContainer">
+                <input
+                  type="secondaryTag"
+                  className={
+                    formErrors.secondaryTag.length > 0 ? "error" : null
+                  }
+                  placeholder="secondary tag"
+                  name="secondaryTag"
+                  noValidate
+                  onChange={this.handleChange}
+                />
+                {formErrors.secondaryTag.length > 0 && (
+                  <span className="errorMessage">
+                    {formErrors.secondaryTag}
+                  </span>
+                )}
+              </div>
+            </div>
+            <div>
+              <button className="createAccount" type="submit">
+                Add picture
+              </button>
             </div>
           </form>
         </div>

@@ -1,0 +1,27 @@
+.articleWrapper {
+  padding-bottom: 7%;
+}
+
+.articleWrapper hr {
+  margin: 0;
+}
+
+.articleTitle {
+  padding: 3%;
+  padding-left: 2%;
+  margin: 0;
+}
+
+.articleImage {
+  float: left;
+  padding: 0 2%;
+  width: 20%;
+}
+
+.articleTextSmall {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.articleLink {
+  font-size: 115%;
+}

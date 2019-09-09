@@ -1,6 +1,9 @@
 import React, { Component } from "react";
 import axios from "axios";
 import "./PicturePage.css";
+import { Link } from "react-router-dom";
+
+import { loginState } from "./../../login";
 
 import CommentsContainer from "./../CommentsContainer/CommentsContainer";
 
@@ -51,8 +54,31 @@ class PicturePage extends Component {
             src={this.state.pictureLink}
             alt={`img ${this.state.pictureid}`}
           />
-          <h4 className="userInfo">{`Picture by: ${this.state.username} ${this.state.email}`}</h4>
+          <h3 className="userName">{`Picture by: ${this.state.username}`}</h3>
+          <h4 className="userEmail">{this.state.email}</h4>
         </div>
+        <h2 className="pictureComments">Comments:</h2>
+        {!loginState.isLoggedIn ? (
+          <Link
+            className="commentLogin"
+            to={{
+              pathname: "/login"
+            }}
+          >
+            <h4>If you want to post a comment, login here</h4>
+          </Link>
+        ) : (
+          <div className="commentPost">
+            <textarea
+              className="commentBox"
+              placeholder={`${loginState.user.username}, type your comment here.`}
+            ></textarea>
+            <br />
+            <button classname="commentButton" name="submit">
+              Submit comment
+            </button>
+          </div>
+        )}
         <CommentsContainer pictureid={this.state.pictureid} />
       </span>
     );

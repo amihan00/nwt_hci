@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Header.css";
 import { Link } from "react-router-dom";
+import { Dropdown } from "semantic-ui-react";
 
 import { loginState, logout } from "./../../login";
 
@@ -9,12 +10,12 @@ class Header extends Component {
     super(props);
     this.state = {
       isLoggedIn: false,
-      activeItem: "home"
+      activeItem: "home",
+      width: window.innerWidth
     };
 
-    loginState.loginCallback = () => {
-      console.log("me tracing mon");
-      this.setState({ isLoggedIn: true });
+    loginState.loginCallback = log => {
+      this.setState({ isLoggedIn: log });
     };
     this.clickMenu = this.clickMenu.bind(this);
   }
@@ -53,9 +54,7 @@ class Header extends Component {
 
   handleLogout = () => {
     logout();
-    this.setState({
-      isLoggedIn: false
-    });
+    loginState.loginCallback(false);
   };
 
   showLoggedInTab = () => {
@@ -83,7 +82,6 @@ class Header extends Component {
   };
 
   isLoggedIn = () => {
-    console.log(this.state);
     return !loginState.isLoggedIn
       ? this.showNotLoggedInTab()
       : this.showLoggedInTab();
@@ -99,45 +97,120 @@ class Header extends Component {
     if (id === this.state.activeItem) return "active";
   };
 
+  updateDimensions = () => {
+    this.setState({ width: window.innerWidth });
+  };
+  componentWillMount() {
+    this.updateDimensions();
+  }
+  componentDidMount() {
+    window.addEventListener("resize", this.updateDimensions);
+  }
+  componentWillUnmount() {
+    window.removeEventListener("resize", this.updateDimensions);
+  }
+
+  dropdown = () => {
+    return (
+      <Dropdown text="MENU">
+        <Dropdown.Menu>
+          <Dropdown.Item>
+            <Link
+              id="home"
+              className={`homeLink headerElement ${this.getClassName("home")}`}
+              to="/"
+              onClick={this.clickMenu.bind(this, "home")}
+            >
+              <h4>HOME</h4>
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link
+              id="blog"
+              className={`blogLink headerElement ${this.getClassName("blog")}`}
+              to="/blog"
+              onClick={this.clickMenu.bind(this, "blog")}
+            >
+              <h4>BLOG</h4>
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link
+              id="about"
+              className={`aboutLink headerElement ${this.getClassName(
+                "about"
+              )}`}
+              to="/about"
+              onClick={this.clickMenu.bind(this, "about")}
+            >
+              <h4>ABOUT</h4>
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item>
+            <Link
+              id="contact"
+              className={`contactLink headerElement ${this.getClassName(
+                "contact"
+              )}`}
+              to="/contact"
+              onClick={this.clickMenu.bind(this, "contact")}
+            >
+              <h4>CONTACT</h4>
+            </Link>
+          </Dropdown.Item>
+          <Dropdown.Item>{this.isLoggedIn()}</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
+    );
+  };
+
   render() {
     return (
       <header className="header">
         <h1 className="pageTitle">Shoot me!</h1>
-        <Link
-          id="home"
-          className={`homeLink headerElement ${this.getClassName("home")}`}
-          to="/"
-          onClick={this.clickMenu.bind(this, "home")}
-        >
-          <h3>HOME</h3>
-        </Link>
-        <Link
-          id="blog"
-          className={`blogLink headerElement ${this.getClassName("blog")}`}
-          to="/blog"
-          onClick={this.clickMenu.bind(this, "blog")}
-        >
-          <h3>BLOG</h3>
-        </Link>
-        <Link
-          id="about"
-          className={`aboutLink headerElement ${this.getClassName("about")}`}
-          to="/about"
-          onClick={this.clickMenu.bind(this, "about")}
-        >
-          <h3>ABOUT</h3>
-        </Link>
-        <Link
-          id="contact"
-          className={`contactLink headerElement ${this.getClassName(
-            "contact"
-          )}`}
-          to="/contact"
-          onClick={this.clickMenu.bind(this, "contact")}
-        >
-          <h3>CONTACT</h3>
-        </Link>
-        {this.isLoggedIn()}
+        {this.state.width > 600 ? (
+          <div className="nav">
+            <Link
+              id="home"
+              className={`homeLink headerElement ${this.getClassName("home")}`}
+              to="/"
+              onClick={this.clickMenu.bind(this, "home")}
+            >
+              <h3>HOME</h3>
+            </Link>
+            <Link
+              id="blog"
+              className={`blogLink headerElement ${this.getClassName("blog")}`}
+              to="/blog"
+              onClick={this.clickMenu.bind(this, "blog")}
+            >
+              <h3>BLOG</h3>
+            </Link>
+            <Link
+              id="about"
+              className={`aboutLink headerElement ${this.getClassName(
+                "about"
+              )}`}
+              to="/about"
+              onClick={this.clickMenu.bind(this, "about")}
+            >
+              <h3>ABOUT</h3>
+            </Link>
+            <Link
+              id="contact"
+              className={`contactLink headerElement ${this.getClassName(
+                "contact"
+              )}`}
+              to="/contact"
+              onClick={this.clickMenu.bind(this, "contact")}
+            >
+              <h3>CONTACT</h3>
+            </Link>
+            {this.isLoggedIn()}
+          </div>
+        ) : (
+          this.dropdown()
+        )}
       </header>
     );
   }

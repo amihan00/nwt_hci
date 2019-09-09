@@ -1,8 +1,14 @@
 #gallery {
-  margin: 3%;
+  width: 30%;
+  margin: 5%;
 }
 
-.picture {
-  max-width: 100%;
-  margin-bottom: 30px;
+.image {
+  width: 350%;
+  max-width: 250px;
+  transition: transform 0.2s;
+}
+
+.image:hover {
+  transform: scale(1.07);
 }

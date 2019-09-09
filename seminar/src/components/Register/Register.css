@@ -1,0 +1,56 @@
+.wrapper {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.wrapper h1 {
+  margin: 3%;
+}
+
+.label {
+  width: 25%;
+  float: left;
+  text-align: right;
+  padding: 13px 0;
+  padding-right: 2.5%;
+  background-color: lightgrey;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.inputContainer {
+  width: 75%;
+  float: right;
+  padding: 12px 0;
+  padding-left: 2.5%;
+  background-color: grey;
+}
+
+.userLabel {
+  width: 25%;
+  float: left;
+  text-align: right;
+  padding: 11px 0;
+  padding-right: 2.5%;
+  margin: 0;
+  background-color: lightgrey;
+  font-size: 16px;
+  white-space: nowrap;
+}
+
+.userText {
+  width: 75%;
+  float: right;
+  padding: 12px 0;
+  padding-left: 2.5%;
+  margin: 0;
+  background-color: grey;
+}
+
+.createAccount {
+  margin: 3%;
+  padding: 1%;
+}
+
+.updateUserLink {
+  color: black;
+}

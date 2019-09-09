@@ -1,4 +1,7 @@
 import React, { Component } from "react";
+import "./ArticlePage.css";
+
+import image from "./../../images/york.png";
 
 class ArticlePage extends Component {
   constructor(props) {
@@ -20,6 +23,9 @@ class ArticlePage extends Component {
       <div className="articleWrapper">
         <h2 className="articleTitle">{article_title}</h2>
         <span className="articleContent">
+          <div className="img">
+            <img src={image} alt="articleImage" className="articleImageBig" />
+          </div>
           <p className="articleText">{article_text}</p>
         </span>
       </div>

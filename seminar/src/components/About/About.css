@@ -1,0 +1,21 @@
+.aboutWrapper {
+  font-family: "Times New Roman", Times, serif;
+}
+
+.about {
+  font-family: "Times New Roman", Times, serif;
+  padding: 5%;
+  padding-bottom: 2%;
+}
+
+.aboutParagraph {
+  font-family: "Times New Roman", Times, serif;
+  padding: 5%;
+  font-size: 120%;
+}
+
+.contactLi {
+  font-family: "Times New Roman", Times, serif;
+  padding-top: 2%;
+  font-size: 120%;
+}
