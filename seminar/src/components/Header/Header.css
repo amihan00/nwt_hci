@@ -1,5 +1,6 @@
 .header {
-  background-color: lightblue;
+  width: 100%;
+  background-color: black;
   font-family: "Times New Roman", Times, serif;
   display: flex;
   justify-content: space-around;
@@ -8,12 +9,28 @@
 
 .headerElement {
   text-decoration: none;
-  color: black;
+  color: white;
+
+  border-bottom: 2px solid transparent;
+}
+
+.headerElement:not(.active):hover {
+  border-bottom: 2px solid #a5a5a5;
+}
+
+.active {
+  border-bottom: 2px solid #ffffff;
 }
 
 .pageTitle {
   margin: 0;
   font-family: "Brush Script MT", "Brush Script Std", cursive;
+  color: white;
+}
+
+.welcomeText {
+  text-decoration: none;
+  color: white;
 }
 
 .logRegWrapper {
@@ -32,9 +49,24 @@
 .logReg h4 {
   margin: 5px;
   padding: 5px;
-  background-color: rgb(205, 143, 211);
+  color: white;
 }
 
 .searchbar {
   padding: 0;
+}
+
+.welcomeText {
+  margin: 5% 0;
+  text-decoration: underline;
+}
+
+.logoutButton {
+  background: none !important;
+  border: none;
+  padding: 0 !important;
+  font-family: "Times New Roman", Times, serif;
+  /*input has OS specific font-family*/
+  color: white;
+  cursor: pointer;
 }

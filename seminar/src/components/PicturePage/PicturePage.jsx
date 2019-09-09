@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import "./PicturePage.css";
 
 import CommentsContainer from "./../CommentsContainer/CommentsContainer";
 
@@ -43,17 +44,17 @@ class PicturePage extends Component {
 
   render() {
     return (
-      <div className="picturePageWrapper">
+      <span className="picturePageWrapper">
         <div className="pictureContainer">
           <img
-            className="picture"
+            className="pictureBig"
             src={this.state.pictureLink}
             alt={`img ${this.state.pictureid}`}
           />
           <h4 className="userInfo">{`Picture by: ${this.state.username} ${this.state.email}`}</h4>
         </div>
         <CommentsContainer pictureid={this.state.pictureid} />
-      </div>
+      </span>
     );
   }
 }

@@ -52,6 +52,7 @@ const updateUser = (request, response) => {
   const userid = parseInt(request.params.userid);
   const { first_name, second_name, email, username, password } = request.body;
 
+  console.log(userid);
   pool.query(
     "UPDATE users SET first_name = $1, second_name = $2, email = $3, username = $4, password = $5 WHERE userid = $6",
     [first_name, second_name, email, username, password, userid],
@@ -105,11 +106,12 @@ const getPictureByTag = (request, response) => {
 };
 
 const createPicture = (request, response) => {
-  const { link } = request.body;
+  const userid = parseInt(request.params.userid);
+  const { picture_link, primary_tag, secondary_tag } = request.body;
 
   pool.query(
-    "INSERT INTO pictures (link) VALUES ($1)",
-    [link],
+    "INSERT INTO pictures (pictureid, picture_link, userid, primary_tag, secondary_tag) VALUES (DEFAULT, $1, $2, $3, $4)",
+    [picture_link, userid, primary_tag, secondary_tag],
     (error, results) => {
       if (error) {
         throw error;

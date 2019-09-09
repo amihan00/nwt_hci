@@ -17,15 +17,17 @@ const formValid = ({ formErrors, ...rest }) => {
   return valid;
 };
 
-class Login extends Component {
+class AddPicturePage extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      username: "",
-      password: "",
+      pictureLink: "",
+      primaryTag: "",
+      secondaryTag: "",
       formErrors: {
-        username: "",
-        password: ""
+        pictureLink: "",
+        primaryTag: "",
+        secondaryTag: ""
       }
     };
   }
@@ -127,4 +129,4 @@ class Login extends Component {
   }
 }
 
-export default Login;
+export default AddPicturePage;

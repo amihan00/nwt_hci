@@ -17,9 +17,12 @@ import ArticlePage from "./components/ArticlePage/ArticlePage";
 import AboutPage from "./components/About/About";
 import ContactPage from "./components/Contact/Contact";
 import PicturePage from "./components/PicturePage/PicturePage";
+import UserPage from "./components/UserPage/UserPage";
+import UpdateUserPage from "./components/UpdateUserPage/UpdateUserPage";
 import Register from "./components/Register/Register";
 import Login from "./components/Login/Login";
 import NotFoundPage from "./components/404/404";
+import AddPicturePage from "./components/AddPicturePage/AddPicturePage";
 
 class App extends Component {
   state = {
@@ -55,6 +58,9 @@ class App extends Component {
             <Route path="/about" component={AboutPage} />
             <Route path="/contact" component={ContactPage} />
             <Route path="/picture/:pictureid" component={PicturePage} />
+            <Route path="/addnewpicture" component={AddPicturePage} />
+            <Route path="/user" component={UserPage} />
+            <Route path="/updateuser" component={UpdateUserPage} />
             <Route path="/register" component={Register} />
             <Route path="/login" component={Login} />
             <Route path="/404" component={NotFoundPage} />

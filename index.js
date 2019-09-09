@@ -22,7 +22,7 @@ app.put("/updateuser/:userid", db.updateUser);
 app.delete("/deleteuser/:userid", db.deleteUser);
 app.get("/pictures", db.getPictures);
 app.post("/picturesbytag/:search_tag");
-app.post("/createpicture", db.createPicture);
+app.post("/createpicture/:userid", db.createPicture);
 app.get("/getpicturecomments/:pictureid", db.getPictureComments);
 app.get("/articles", db.getArticles);
 app.get("/getarticlebyid/:articleid", db.getArticleById);

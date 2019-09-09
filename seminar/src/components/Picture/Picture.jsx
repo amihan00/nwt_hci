@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
-import "./Picture.css";
+import "./Picture.scss";
 
 class Picture extends Component {
   constructor(props) {
@@ -39,12 +39,9 @@ class Picture extends Component {
 
   render() {
     return (
-      /* <Link
-        to={pathname: `/picture/${this.state.picture.pictureid}`,
-        state: {picture: this.state.picture}}
-      > */
-      <div className="pictureWrapper">
+      <div id="gallery">
         <Link
+          className="imageLink"
           to={{
             pathname: `/picture/${this.state.picture.pictureid}`,
             state: { picture: this.state.picture }
@@ -53,8 +50,8 @@ class Picture extends Component {
           <span className="pictureElement">
             <img
               className="picture"
-              src={this.state.picture.pictureLink}
-              alt={`img ${this.state.picture.pictureid}`}
+              src={this.props.picture.picture_link}
+              alt={`img ${this.props.picture.pictureid}`}
             />
           </span>
         </Link>
