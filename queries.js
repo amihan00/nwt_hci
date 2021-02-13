@@ -4,7 +4,7 @@ const pool = new Pool({
   user: "me",
   host: "localhost",
   database: "nwt",
-  password: "Jj72630F",
+  password: "TestPass",
   port: 5432
 });
 const secret = "mysecret";
